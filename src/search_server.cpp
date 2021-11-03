@@ -7,6 +7,8 @@
 #include <iostream>
 #include <future>
 
+using namespace std;
+
 vector<string> SplitIntoWords(string line) {
   istringstream words_input(move(line));
   return {
@@ -51,7 +53,6 @@ void AddQueriesStreamSingleThread(istream& query_input, ostream& search_results_
         }
       }
     }
-
     search_results.clear();
     search_results.reserve(max_id+1);
 

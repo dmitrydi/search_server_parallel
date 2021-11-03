@@ -1,5 +1,7 @@
 #include "parse.h"
 
+using namespace std;
+
 string_view Strip(string_view s) {
   while (!s.empty() && isspace(s.front())) {
     s.remove_prefix(1);

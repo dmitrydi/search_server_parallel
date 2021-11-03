@@ -5,22 +5,25 @@
 #include <string>
 #include <sstream>
 
-using namespace std;
-using namespace chrono;
+using std::chrono::steady_clock;
+using std::chrono::duration_cast;
+using std::chrono::milliseconds;
+using std::chrono::duration;
+
 struct TotalDuration {
-  string message;
+  std::string message;
   steady_clock::duration value;
-  explicit TotalDuration(const string& msg = "")
+  explicit TotalDuration(const std::string& msg = "")
         : message(msg + ": ")
         , value(0)
         {}
 
   ~TotalDuration() {
-  ostringstream os;
+  std::ostringstream os;
   os << message
       << duration_cast<milliseconds>(value).count()
-      << " ms" << endl;
-  cerr << os.str();
+      << " ms" << std::endl;
+  std::cerr << os.str();
   }
 };
 

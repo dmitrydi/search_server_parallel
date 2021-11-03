@@ -18,9 +18,6 @@
 #include <iomanip>
 #include <ctime>
 
-using namespace std;
-using namespace chrono;
-
 int main() {
   TestRunner tr;
 
@@ -29,5 +26,4 @@ int main() {
   RUN_TEST(tr, TestHitcount);
   RUN_TEST(tr, TestRanking);
   RUN_TEST(tr, TestBasicSearch);
-  //RUN_TEST(tr, TestSpeed);
 }

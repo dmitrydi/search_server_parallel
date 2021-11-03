@@ -1,15 +1,13 @@
 #pragma once
 
 #include "iterator_range.h"
-
 #include <string_view>
 #include <sstream>
 #include <vector>
-using namespace std;
 
 template <typename Container>
-string Join(char c, const Container& cont) {
-  ostringstream os;
+std::string Join(char c, const Container& cont) {
+  std::ostringstream os;
   for (const auto& item : Head(cont, cont.size() - 1)) {
     os << item << c;
   }
@@ -17,5 +15,5 @@ string Join(char c, const Container& cont) {
   return os.str();
 }
 
-string_view Strip(string_view s);
-vector<string_view> SplitBy(string_view s, char sep);
+std::string_view Strip(std::string_view s);
+std::vector<std::string_view> SplitBy(std::string_view s, char sep);

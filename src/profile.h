@@ -4,12 +4,13 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-using namespace std::chrono;
+using std::chrono::steady_clock;
+using std::chrono::duration_cast;
+using std::chrono::milliseconds;
 
 class LogDuration {
 public:
-  explicit LogDuration(const string& msg = "")
+  explicit LogDuration(const std::string& msg = "")
     : message(msg + ": ")
     , start(steady_clock::now())
   {
@@ -18,12 +19,12 @@ public:
   ~LogDuration() {
     auto finish = steady_clock::now();
     auto dur = finish - start;
-    cerr << message
+    std::cerr << message
        << duration_cast<milliseconds>(dur).count()
-       << " ms" << endl;
+       << " ms" << std::endl;
   }
 private:
-  string message;
+  std::string message;
   steady_clock::time_point start;
 };
 

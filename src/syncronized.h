@@ -1,26 +1,25 @@
 #pragma once
 
 #include <mutex>
-using namespace std;
 
 template <typename T>
 class Synchronized {
 public:
   explicit Synchronized(T initial = T())
-    : value(move(initial))
+    : value(std::move(initial))
   {
   }
 
   struct Access {
     T& ref_to_value;
-    lock_guard<mutex> guard;
+    std::lock_guard<std::mutex> guard;
   };
 
   Access GetAccess() {
-    return {value, lock_guard(m)};
+    return {value, std::lock_guard(m)};
   }
 
 private:
   T value;
-  mutex m;
+  std::mutex m;
 };

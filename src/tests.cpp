@@ -1,47 +1,7 @@
 #include "tests.h"
 #include "parse.h"
 
-const vector<string>& Vocabulary::Get() const {
-  return voc;
-};
-
-NaturalLangVocabulary::NaturalLangVocabulary(const string& datafile) {
-  if (!fs::exists(datafile)) {
-    throw invalid_argument("No data file exists");
-  }
-  srand(time(NULL));
-  ifstream input(datafile);
-  string s;
-  while(input >> s) {
-    voc.push_back(s);
-  }
-  voc_size = voc.size();
-}
-
-RandomLangVocabulary::RandomLangVocabulary(const size_t vocabulary_size, const size_t word_length) {
-  voc_size = vocabulary_size;
-  voc.reserve(voc_size);
-  srand(time(NULL));
-  for (size_t i = 0; i < voc_size; i++) {
-    voc.push_back(random_string(word_length));
-  }
-}
-
-string RandomLangVocabulary::random_string(size_t length) {
- auto randchar = []() -> char
- {
-   const char charset[] = "0123456789"
-                          "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                          "abcdefghijklmnopqrstuvwxyz";
-   const size_t max_index = (sizeof(charset) - 1);
-   return charset[ rand() % max_index ];
-  };
-  string str(length,0);
-  generate_n( str.begin(), length, randchar );
-  return str;
-}
-
-void TestParallelSpeed();
+using namespace std;
 
 duration<int, milli> random_time(const size_t max_delay) {
   srand(time(NULL));

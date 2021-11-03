@@ -11,25 +11,24 @@
 #include <mutex>
 #include <iostream>
 #include <future>
-using namespace std;
 
-using List = vector<pair<size_t, size_t> >;
+using List = std::vector<std::pair<size_t, size_t> >;
 
 class InvertedIndex {
 public:
-  void Add(string &&document);
-  const List &Lookup(const string& word) const;
+  void Add(std::string &&document);
+  const List &Lookup(const std::string& word) const;
 
   size_t Size() const {
     return size;
   }
 
-  map<string, List> GetIndex() {
+  std::map<std::string, List> GetIndex() {
     return index;
   }
 
 private:
-  map<string, List> index;
+  std::map<std::string, List> index;
   List index_empty;
   size_t size = 0;
 };
@@ -37,11 +36,11 @@ private:
 class SearchServer {
 public:
   SearchServer() = default;
-  explicit SearchServer(istream& document_input);
-  void UpdateDocumentBase(istream& document_input);
-  void AddQueriesStream(istream& query_input, ostream& search_results_output);
+  explicit SearchServer(std::istream& document_input);
+  void UpdateDocumentBase(std::istream& document_input);
+  void AddQueriesStream(std::istream& query_input, std::ostream& search_results_output);
 
 private:
   Synchronized<InvertedIndex> index;
-  vector<future<void>> futures;
+  std::vector<std::future<void>> futures;
 };
