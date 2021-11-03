@@ -76,7 +76,7 @@ void AddQueriesStreamSingleThread(istream& query_input, ostream& search_results_
     );
 
     search_results_output << current_query << ':';
-    for (auto [docid, hitcount] : Head(search_results, 5)) {
+    for (auto [docid, hitcount] : Head(search_results, SearchServer::MAX_OUTPUT)) {
       if (hitcount > 0) {
         search_results_output << " {"
                               << "docid: " << docid << ", "
