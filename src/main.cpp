@@ -5,7 +5,6 @@
 #include "duration.h"
 #include "tests.h"
 #include "iterator_range.h"
-
 #include <algorithm>
 #include <iterator>
 #include <map>

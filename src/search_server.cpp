@@ -39,7 +39,7 @@ void SearchServer::UpdateDocumentBase(istream& document_input) {
 }
 
 void AddQueriesStreamSingleThread(istream& query_input, ostream& search_results_output, Synchronized<InvertedIndex>& index) {
-  size_t n = 50000;
+  size_t n = SearchServer::MAX_DOCS;
   vector<size_t> docid_count(n, 0);
   vector<pair<size_t, size_t>> search_results;
 

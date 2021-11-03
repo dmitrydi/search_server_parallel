@@ -39,7 +39,7 @@ public:
   explicit SearchServer(std::istream& document_input);
   void UpdateDocumentBase(std::istream& document_input);
   void AddQueriesStream(std::istream& query_input, std::ostream& search_results_output);
-
+  static const size_t MAX_DOCS = 50000;
 private:
   Synchronized<InvertedIndex> index;
   std::vector<std::future<void>> futures;
